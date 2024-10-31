@@ -55,42 +55,7 @@ public class EmpleadoDAO {
        
     }
 
-    // Método para obtener el sueldo por DNI
-    public Double obtenerSueldoPorDni(String dni) throws SQLException {
-    	Double salario = null;
-
-        String sql = "SELECT sueldo_final FROM nominas WHERE dni = ?";
-
-        Connection connection = obtenerConexion();
-
-
-
-        try {
-
-            PreparedStatement statement = connection.prepareStatement(sql);
-
-            statement.setString(1, dni);
-
-            ResultSet rs = statement.executeQuery();
-
-            if (rs.next()) {
-
-                salario = rs.getDouble("sueldo_final");
-
-            }
-
-            statement.close();
-
-            connection.close();
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-        }
-
-        return salario; 
-    }
+   
 
     // Método para obtener un empleado por DNI
     public Empleado obtenerEmpleadoPorDni(String dni) throws DatosNoCorrectosException {

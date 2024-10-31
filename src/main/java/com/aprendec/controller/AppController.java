@@ -21,7 +21,7 @@ public class AppController extends HttpServlet {
                 request.getRequestDispatcher("/empleado?opcion=listar").forward(request, response);
                 break;
             case "buscarSueldo":
-                request.getRequestDispatcher("/empleado?opcion=buscarSueldo").forward(request, response);
+                request.getRequestDispatcher("/nomina?opcion=buscarSueldo").forward(request, response);
                 break;
             case "editar":
                 String dni = request.getParameter("dni");

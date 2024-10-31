@@ -31,9 +31,6 @@ public class EmpleadoServlet extends HttpServlet {
             List<Empleado> listaEmpleados = empleadoDAO.obtenerEmpleados();
             request.setAttribute("lista", listaEmpleados);
             request.getRequestDispatcher("views/listar.jsp").forward(request, response);
-        } else if ("buscarSueldo".equals(opcion)) {
-            request.setAttribute("empleadoDAO", empleadoDAO);
-            request.getRequestDispatcher("views/buscarSueldo.jsp").forward(request, response);
         } else if ("editar".equals(opcion)) {
             String dni = request.getParameter("dni");
             Empleado empleado;
@@ -53,22 +50,7 @@ public class EmpleadoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String opcion = request.getParameter("opcion");
 
-        if ("buscar".equals(opcion)) {
-            String dni = request.getParameter("dni");
-            try {
-                Double salario = empleadoDAO.obtenerSueldoPorDni(dni);
-                if (salario == null) {
-                    request.setAttribute("mensaje", "No se encontró un sueldo o empleado con el DNI ingresado.");
-                } else {
-                    request.setAttribute("salario", salario);
-                    request.setAttribute("dni", dni);
-                }
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/resultadoSueldo.jsp");
-                requestDispatcher.forward(request, response);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else if ("actualizar".equals(opcion)) {
+        if ("actualizar".equals(opcion)) {
             String dni = request.getParameter("dni");
             String nombre = request.getParameter("nombre");
             char sexo = request.getParameter("sexo").charAt(0);

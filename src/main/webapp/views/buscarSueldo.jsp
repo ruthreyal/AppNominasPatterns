@@ -14,7 +14,7 @@
 </head>
 <body>
     <h1>Buscar Sueldo de Empleado</h1>
-    <form action="empleado" method="post">
+    <form action="nomina" method="post">
         <input type="hidden" name="opcion" value="buscar">
         <label for="dni">Ingrese el DNI del Empleado:</label>
         <input type="text" id="dni" name="dni" required>
