@@ -2,6 +2,7 @@ package com.aprendec.controller;
 
 import com.aprendec.dao.EmpleadoDAO;
 import com.aprendec.exceptions.DatosNoCorrectosException;
+import com.aprendec.factory.PersonaFactory;
 import com.aprendec.model.Empleado;
 
 import javax.servlet.RequestDispatcher;
@@ -59,9 +60,9 @@ public class EmpleadoServlet extends HttpServlet {
 
             Empleado empleado;
 			try {
-				empleado = new Empleado(nombre, dni, sexo, categoria, anyos);
+				empleado = PersonaFactory.createEmpleado(nombre, dni, sexo, categoria, anyos);
 				empleadoDAO.actualizarEmpleado(empleado);
-				response.sendRedirect("app?action=empleado&opcion=listar"); // Redirige al AppController
+				response.sendRedirect("appcontroller?action=empleado&opcion=listar"); // Redirige al AppController
 			} catch (DatosNoCorrectosException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

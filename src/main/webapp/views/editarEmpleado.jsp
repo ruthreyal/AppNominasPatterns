@@ -14,7 +14,7 @@
 </head>
 <body>
     <h1>Editar Empleado</h1>
-    <form action="empleado" method="post">
+    <form action="appcontroller" method="post">
         <input type="hidden" name="opcion" value="actualizar">
         <input type="hidden" name="dni" value="${empleado.dni}">
         <label for="nombre">Nombre:</label>

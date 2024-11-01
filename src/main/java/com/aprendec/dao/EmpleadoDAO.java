@@ -2,6 +2,7 @@ package com.aprendec.dao;
 
 import com.aprendec.conexion.Conexion;
 import com.aprendec.exceptions.DatosNoCorrectosException;
+import com.aprendec.factory.PersonaFactory;
 import com.aprendec.model.Empleado;
 
 import java.sql.*;
@@ -24,7 +25,7 @@ public class EmpleadoDAO {
 
             while (rs.next()) {
                 try {
-                    Empleado empleado = new Empleado(
+                    Empleado empleado = PersonaFactory.createEmpleado(
                         rs.getString("nombre"),
                         rs.getString("dni"),
                         rs.getString("sexo").charAt(0),
@@ -72,7 +73,7 @@ public class EmpleadoDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                empleado = new Empleado(
+                empleado = PersonaFactory.createEmpleado(
                     rs.getString("nombre"),
                     rs.getString("dni"),
                     rs.getString("sexo").charAt(0),
@@ -171,7 +172,7 @@ public class EmpleadoDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    Empleado empleado = new Empleado(
+                    Empleado empleado = PersonaFactory.createEmpleado(
                         rs.getString("nombre"),
                         rs.getString("dni"),
                         rs.getString("sexo").charAt(0),
